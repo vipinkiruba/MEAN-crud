@@ -1,0 +1,49 @@
+<p>employee works!</p>
+<div>
+    <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployees._id">
+
+        <label>Name</label>
+        <input placeholder="Enter Name" type="text" name="name" #name="ngModel"
+            [(ngModel)]="employeeService.selectedEmployees.name">
+
+        <label>Position</label>
+        <input placeholder="Enter Position" type="text" name="position" #name="ngModel"
+            [(ngModel)]="employeeService.selectedEmployees.position">
+
+        <label>Office</label>
+        <input placeholder="Enter office" type="text" name="office" #name="ngModel"
+            [(ngModel)]="employeeService.selectedEmployees.office">
+
+        <label>Salary</label>
+        <input placeholder="Enter Salary" type="text" name="salary" #name="ngModel"
+            [(ngModel)]="employeeService.selectedEmployees.salary">
+        <button type="button" (click)="resetForm(employeeForm)">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Salary</th>
+                <th>Modification</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let emp of employeeService.employees">
+            <td>{{emp.name}}</td>
+            <td>{{emp.position}}</td>
+            <td>{{emp.office}}</td>
+            <td>{{emp.salary}}</td>
+            <td>
+                <button (click)="onEdit(emp)">Edit</button>
+                <button (click)="onDelete(emp , employeeForm)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
